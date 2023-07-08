@@ -1,0 +1,44 @@
+version: "3.5"
+
+services:
+  sorteo:
+    build: .
+    image: sndregistry.sondeosglobal.com/barraca_central/sorteo:1.0.0
+    volumes:
+      - ./media:/app/media
+      - ./logs:/app/logs
+    network_mode: host
+    environment:
+      NODE_ENV: "development"
+      MONGO_URI: "mongodb://BASEDEDATOSPRODUCTIVA/sorteos"
+      JWT_SECRET: "V8wzw4iL9H40oxXAVj9u"
+      JWT_LOGIN_EXPIRED_IN: "3d"
+      JWT_REGISTER_EXPIRED_IN: "30d"
+      APP_NAME: "sorteos"
+      APP_PORT: 5000
+      APP_API_URL: "http://localhost:5000"
+      APP_WEB_URL: "http://localhost:5000"
+      SMTP_HOST: "smtp.xxxx.com.ar"
+      SMTP_PORT: 25
+      SMTP_SECURE: "false"
+      SMTP_IGNORE_TLS: "true"
+      SMTP_USER: "user@domain.com.ar"
+      SMTP_PASS: "xxxxxx"
+      AVATAR_MAX_SIZE: 2000000
+      LOG_LEVEL: "debug"
+      LOG_REQUEST: "ON"
+      LOG_RESPONSE_TIME: "ON"
+      LOG_GQL_ERRORS: "ON"
+      LOG_TRANSPORT_CONSOLE: "ON"
+      LOG_TRANSPORT_COMBINED: "ON"
+      LOG_TRANSPORT_ERROR: "ON"
+      LOG_TRANSPORT_ACCESS: "ON"
+      LOG_TRANSPORT_GQL_ERROR: "ON"
+      LOG_TRANSPORT_GQL_RESPONSE: "ON"
+      LOG_COLORIZE: "ON"
+      LOG_FILE_MAX_SIZE: 50000000
+      LOG_FILE_MAX_FILES: 3
+      LOG_MODE: "TEXT"
+      CODES_QUANTITY: 100000
+    ports:
+      - 3422:5000

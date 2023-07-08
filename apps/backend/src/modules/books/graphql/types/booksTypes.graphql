@@ -1,0 +1,9 @@
+type Book {
+    id: ID
+    title: String
+    description: String
+}
+
+type Mutation{
+    sendBook(title: String, description: String): Book
+}
